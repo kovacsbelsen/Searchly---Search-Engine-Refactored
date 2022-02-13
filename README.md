@@ -48,3 +48,4 @@ Introductory Programming Final Project 2021, using Java programming language
 
 - InvertedIndex.java- represents data structure based on the inverted index.  It is responsible for storing a mapping of search queries and corresponding pages.
 
+- WebServer.java- represents a WebServer object. It is responsible for creating, from file,  processing and delivering web pages,  it also takes the http request,  that will trigger the search.
