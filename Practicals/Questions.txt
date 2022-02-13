@@ -1,0 +1,6 @@
+Questions for Sergio for meeting 1:
+1. Javadcs and test classes, we can not generate javadocs for test classes, should that be included?
+2. Should all tests be in one class? or seperate classes?
+3. Should methods be public? 
+4. Where should we display message, editing pages will cause uni tests to fail and
+     js seems like and odd exercise.

@@ -1,0 +1,10 @@
+Usefull code snippets
+
+BinaryOperator<WebSet>  allUnion = (runningUnion, ws) -> runningUnion.union(ws);
+BinaryOperator<WebSet>  allIntersect2 = (runningIntersect, ws) -> runningIntersect.intersect(ws);
+WebSet unified = webSetList.stream()
+    .map((e) -> e.stream()
+        .forAll(WebSet::intersect)) // new webset should be universal
+    .reduce(new WebSet(), allUnion); 
+    "President USA OR Queen Denmark OR Chancellor Germany"
+        

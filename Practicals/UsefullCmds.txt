@@ -1,0 +1,20 @@
+When committing changes learly state the task number that oyour change relates to, e.g:
+"T1 - changed data type from var to string"
+Task 1 - T1
+Task 2 - T2
+Task 3 - T3
+Task 4 - T4
+Task 5 - T5
+
+To generate javadoc when standing in project:
+gradle javadoc
+
+Generate jacoco report:
+gradle test jacocoTestReport
+
+Suggested contents for .gitignore:
+Just use the one from github.
+
+Some use full git commands
+if you wish to rewrite last commit message, perhaps you forgot T1 - :
+git commit --amend -m "T1 - added ...."
