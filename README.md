@@ -209,10 +209,21 @@ We have followed the mathematical approach described below:
 > To calculate the TF-IDF value of a term in a given document we have applied the formula:
 tf idf(term, d, D) = tf(term, d) · idf(term, D) where term is a single word search query,
 d is the document and D is the corpus of documents.
-To calculate the term frequency of the search query within the given document, we have
+>To calculate the term frequency of the search query within the given document, we have
 applied the following formula:
 tf(term, d): the number of term within the document divided by the number of all words
 in the document
-To calculate the inverse document frequency of the search query within the corpus of documents, we have applied the following formula:
+>To calculate the inverse document frequency of the search query within the corpus of documents, we have applied the following formula:
 idf(term, D): the logarithm of ratio the number of documents in the corpus and the number
 of documents that contain the term
+  
+#### Solution
+> We have implemented the solution in Ranker.java class. It contains these substantial methods:
+- rankbyTF - responsible for sorting the pages based of the term frequency
+- rankbyIDF - responsible for sorting the pages based on the inverse document frequency
+- tfScores - calculate TF - scores for a single page
+- combineTF - combines term frequencies from a single page based on query structure
+- rankbyHashedID - like rank by IDF but implemented with hashmaps and tables,
+which is faster with many results, it uses the methods below.
+- findTF - responsible for calculating the term frequency
+- findIDF - responsible for finding the inverse document frequency
