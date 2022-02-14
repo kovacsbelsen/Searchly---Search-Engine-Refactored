@@ -171,3 +171,48 @@ The QueryHandler class is responsible for processing multiple word or multiple s
 queries. The WebSet class is responsible for supporting QueryHandler by creating intersections and unions between sets. In the QueryHandler class, we have implemented the
 following methods to handle the processing of search queries and utilized the Inverted Index:
 
+- lookUp(String term) - responsible for processing a single word query, checking if
+it is contained within loaded pages and returning a WebSet of pages that contain the
+given search term
+  
+- getMatchingWebpages(String query) - responsible for retrieving and processing
+matching pages, and passing them to the WebServer
+  
+- getWebSets (String text) - responsible for processing the search query, separating it into sub queries and further into single word queries and returning the list of
+WebSets of pages containing the single word query
+  
+> In the WebSet class we have developed the following methods to be able to retrieve the
+intersection of matching queries from multiple sets:
+  
+- union(WebSt in) - responsible for creating a union of WebSets that contain intersections of matching pages
+
+- intersect(WebSet in - responsible for finding an intersection between the sets
+  
+- static unify(List<List<WebSet» webSetList) - responsible for processing the inputted WebSets and returning the WebSet of unified intersections
+  
+# Task 5: Ranking Algorithms
+
+  > The given task was to implement a ranking algorithm so the search results are
+ranked by the importance. The task asks to both find term frequency based on a given web
+pages contents and to find term frequency based on the InvertedIndex of the data.
+
+ #### Approach
+
+> We have decided to look into a term frequency score which would evaluate
+how relevant the given search query is to a document in a collection of documents. This
+is done by checking the relevance of a query within a web pages content. The content is
+matched with the query, and if the query matches a count is taken. Then the frequency
+of these matches on the query is divided by the total size of the document. Too avoid the
+pitfall of having words such as "the" ranking as important, we have introduced the inversedocument frequency.
+We have followed the mathematical approach described below:
+
+> To calculate the TF-IDF value of a term in a given document we have applied the formula:
+tf idf(term, d, D) = tf(term, d) · idf(term, D) where term is a single word search query,
+d is the document and D is the corpus of documents.
+To calculate the term frequency of the search query within the given document, we have
+applied the following formula:
+tf(term, d): the number of term within the document divided by the number of all words
+in the document
+To calculate the inverse document frequency of the search query within the corpus of documents, we have applied the following formula:
+idf(term, D): the logarithm of ratio the number of documents in the corpus and the number
+of documents that contain the term
