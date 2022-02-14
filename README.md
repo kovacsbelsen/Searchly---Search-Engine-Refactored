@@ -116,3 +116,58 @@ valid page is created using unit test based on corpus size variable which we inc
 1 every time a new page is created. They are available in InvertedIndexTest.java.
  
 # Task 3: Inverted indexes
+
+  > The given task was to make our query algorithm more efficient by implementing a
+inverted index. An inverted index allows for better performance by sorting and creating a
+map that matches terms by their document ID. The inversion of the map that occurs allows
+for searching the occurrence of words within our web pages. The inverted index is created
+in out InvertedIndex class. As mentioned in task 2, this class has a method loadPages()
+where the creation of the InvertedIndex will take place.
+
+ #### Approach
+
+> An inverted index is created by making a HashMap called title. Our key for
+our inverted index is created by mapping a key-value pair of URL and titles. We also want
+to store data in a HashMap, called indexedPages that contains a key value pair of a term,
+or a line of content and it’s URL. This information will later be used for our HashSet and as
+such the URL value is stored as a Set. Therefore, for example, if the content in our page is,
+"This is a page" and the URL is "www.page1.com" for each word in the string it is mapped
+onto "www.page1.com". Lastly, we have allPages. This is a HashMap that has a key value
+pair of the URL and page information.
+
+#### Solution
+  
+> In order to solve this task we needed a way to sort through data files identifying
+which lines of code are URL, Title, and Content. We have used a scanner to sort through
+each line of text and three conditions have been set up to sort into variables these different
+lines as mentioned in task 2, namely, currentURL, currentTitle, and currentContent.
+The inverted index after being created, is implemented in the QueryHandler class as a
+parameter in the QueryHandler constructor. From this point we use the "query" of our
+users input text to create a WebSet. The WebSet will be explained in the next section, but
+the two methods in QueryHandler that use the inverted index are lookUp() for one word
+queries and getWebSets() for multi-word queries.
+
+# Task 4: Refined Queries
+
+  > The given task was to enable our search engine to support more complex queries
+meaning that now we could use multiple search queries instead of a single term.
+
+ #### Approach
+
+> In order to get a better understanding of the problem of generating sets with
+relevant web pages that will be displayed to the user, we have used the following mathematical approach:
+Suppose the user searches for Queen. Then, let W be the set containing all pages, Px =
+{w | w ∈ W ∧ x ∈ w} which is the set of pages W in the containing the word x. One
+might imagine that PQueen = {Amalienborg, Sweden, . . . } Queen Denmark
+What we now want is pages that contain both "Queen" and "Denmark", these can be denoted
+as:
+  
+![](formulas.png)
+
+#### Solution
+  
+> The solution is divided into two separate classes - QueryHandler and WebSet.
+The QueryHandler class is responsible for processing multiple word or multiple search
+queries. The WebSet class is responsible for supporting QueryHandler by creating intersections and unions between sets. In the QueryHandler class, we have implemented the
+following methods to handle the processing of search queries and utilized the Inverted Index:
+
