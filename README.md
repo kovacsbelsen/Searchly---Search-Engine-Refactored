@@ -1,5 +1,7 @@
 # Searchly---Search-Engine-Refactored
 Introductory Programming Final Project 2021, using Java programming language
+This description contains the highlights from the documentation.
+For the full documentation, please see the "IP_Grp_18_Searchly.pdf" file
 
 
 # Group 18
