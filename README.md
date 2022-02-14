@@ -49,3 +49,70 @@ Introductory Programming Final Project 2021, using Java programming language
 > The given task was to output a message informing a user that no web pages matched the given search term if no matches were found. Additionally, the program could create a web page only if it contained a title and at least one word.
 
 ![](ClassDiagram.png)
+
+#### Approach
+
+> We have modified a document object with the id attribute "responsesize" in
+the the code.js to display a message if content of web pages did not match the given query.
+Furthermore, we have modified the reading of the data files in the InvertedIndex class,
+loadPages(String filename) method, such that it only created a web page if it contained
+a title and and at least one word.
+
+#### Solution
+
+> In code.js, we have decided to implement a ternary conditional operator to make
+our code more concise followed by additional if/else statements. The condition states that
+if data.length equals to 0 then the program outputs a paragraph containing the following
+message: "No web page contains the query word." If the condition is not met, then web
+pages matching the given query will be displayed. We have further modified the style of
+the document object with the id attribute "urllist" to remove a frame from the url list if
+no pages are returned. We have implemented the solution using an if/else statement and
+two properties: style and display. The condition states that if url list does not contain any
+pages, the element is removed else the program displays search results as a block element.
+In regards of loadPages(String filename) method, first we have identified the following
+criteria for a page to be valid:
+
+- it must contain an url
+- it must contain a title
+- it must contain at least one word
+
+> In order to check if the given page meets all the criteria, we must track url, title and content.
+Therefore we have declared three local variables:
+
+- String currentUrl
+- String currentTitle
+- ArrayList<String> currentContents
+
+> Alongside, we have implemented three boolean checks combined with AND operator that
+checks if these variables are not empty:
+
+- !currentUrl.isEmpty() && !currentContents.isEmpty() && !currentTitle.isEmpty())
+  
+> First, the program loads contents from the data file and reads them line by line using a for
+loop. In this for loop, we populate currentUrl, currentTitle and currentContent variables.
+There are three potential scenarios that we need to be aware of and store the correct data:
+a line could be a url, a title, or be a part of the content. Therefore we have implemented
+if/else statements to identify and control the action for each scenario:
+  
+- if the line starts with the "*page" prefix - then it must be a url, so the program removes
+the prefix by using substring() method and assigns the retrieved url as a currentUrl.
+  
+- if the condition above fails, then it must be either a title or content. In the data files,
+we have observed that the title always comes after the page url. Therefore, in order
+to distinguish between those two, the program checks whether index of the current
+line equals to the index of url increased by 1. If it’s a title, then the program assigns
+the line as a value of the currentTitle.
+  
+- if both conditions above fail, then the line must be a part of the content. So the
+program adds the line to the list of currentContents.
+
+> The program continues to loop through the lines populating currentContent until it reaches
+the second page. At this point, the currentUrl, currentTitle and currentContents are not
+empty, meaning the content satisfies all the criteria, so it passes boolean checks allowing
+for a new page to be created. We have verified the message output through manual testing
+where we have used a string of random characters that can not be recognized as an actual
+word and used it as an input in the search engine. Furthermore, we have verified that no
+valid page is created using unit test based on corpus size variable which we increment by
+1 every time a new page is created. They are available in InvertedIndexTest.java.
+ 
+# Task 3: Inverted indexes
